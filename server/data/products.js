@@ -4,7 +4,7 @@ const products = [
       image:"https://i.pinimg.com/originals/da/d4/63/dad4635b1386c751f809ace37117df74.jpg",
       description:"lorem",
       price:34,
-      countInStock:3,
+      countInStock:10,
       rating:4,
       numReviews:4,
     },

@@ -10,8 +10,8 @@ import {listProductDetails} from "../Redux/Actions/ProductActions.js";
 
 
 
-const SingleProduct = ({match}) =>{
-  
+const SingleProduct = ({history,match}) =>{
+  const [qty, setQty] = useState(1);
    const productId = match.params.id;
    const dispatch = useDispatch();
     const productDetails = useSelector((state)=> state.productDetails)
@@ -21,6 +21,11 @@ const SingleProduct = ({match}) =>{
     useEffect(()=>{
      dispatch(listProductDetails(productId))
     },[dispatch,productId])
+
+    const AddToCartHandle = (e)=>{
+        e.preventDefault()
+        history.push(`/cart/${productId}?qty=${qty}`)
+    }
     return(
         <>
         <Header/>
@@ -73,7 +78,7 @@ const SingleProduct = ({match}) =>{
                         ))}
                     </select>
                 </div>
-            <button>
+            <button onClick={AddToCartHandle}>
                 Add To Cart
             </button>
                 </>
