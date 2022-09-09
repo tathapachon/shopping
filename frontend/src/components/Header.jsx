@@ -1,8 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux"
 import "./Header.scss"
 import{AiOutlineInstagram,AiOutlineTwitter,AiOutlineFacebook,} from "react-icons/ai"
+import { logout } from "../Redux/Actions/userAction";
 const Header = () => {
+    const dispatch = useDispatch()
+    const cart = useSelector((state)=> state.cart)
+    const {cartItems} =cart;
+    const userLogin = useSelector((state)=> state.userLogin);
+    const {userInfo} = userLogin;
+    
+    const logoutHandler = ()=>{
+       dispatch(logout())
+    }
     return (
         <div className=" ">     
         <div className="nav-or">     
@@ -47,17 +58,32 @@ const Header = () => {
                                     </form>
                                 </div>
                                 <div >
-                                    
-                                    <select>
-                                        <option value="Hi, Admin Doe">  Hi, Admin Doe</option>
+                                  {
+                                    userInfo ?(
+                                      <div>
+                                        <span>Hi, {userInfo.name}</span>
+                                        <Link to="/profile">Profile</Link>
+                                        <Link to="#"
+                                        onClick={logoutHandler}
+                                        >Logout</Link>
+                                      </div>
+                                    ):
+                                    (
+                                        <div>
+                                        <Link to="/login">Login</Link>
+                                        <Link to="/register">Register</Link>
+                                      </div>
+                                    )
+                                  }
                                         
-                                        <option value="profile">Profile</option>
                                         
-                                        <option value="Logout"> Logout</option>
-                                    </select>
+                                   
                                 </div>
                                 <div>
+                            <Link to="/cart">
+                            <span>{cartItems.length}</span>
                             <button type="button" > car</button>
+                            </Link>
                                        
                         </div>
                             

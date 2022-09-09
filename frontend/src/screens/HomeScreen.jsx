@@ -11,10 +11,8 @@ const HomeScreen= () =>{
     return(
         <div>
             <Header/>
-           <ShopSection/>
-           <ContactInfo/>
-           <CalltoActionSection/>
-           <Footer/>
+            <ShopSection/>
+           
            
           
         </div>

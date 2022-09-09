@@ -1,0 +1,18 @@
+.cardProduct{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.price{
+  display: flex;
+  justify-content: space-around;
+  color: black;
+  background-color: rgb(231, 228, 228);
+  letter-spacing: 0.25em;
+
+
+}
+.none{
+  text-decoration:none;
+}

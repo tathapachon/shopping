@@ -2,13 +2,31 @@ import { createStore, combineReducers, applyMiddleware} from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools} from "redux-devtools-extension";
 import { productListReducer,productDetailsReducer } from "./Reducers/ProductReducers";
+import { cartReducer } from "./Reducers/CartReducers";
+import { useRegisterReducer, userLoginReducer } from "./Reducers/UserReducers";
 
 const reducer = combineReducers({
     productList : productListReducer,
-    productDetails: productDetailsReducer
+    productDetails: productDetailsReducer,
+    cart: cartReducer,
+    userLogin : userLoginReducer,
+    userRegister: useRegisterReducer
 });
 
-const initialState = {};
+const cartItemsFromLocalStorage = localStorage.getItem("cartItems")
+? JSON.parse(localStorage.getItem("cartItems"))
+: [];
+
+const userInfoFromLocalStorage = localStorage.getItem("userInfo")
+? JSON.parse(localStorage.getItem("userInfo"))
+: null;
+
+const initialState = {
+    cart :{
+        cartItems:cartItemsFromLocalStorage
+    },
+    userLogin:{userInfo: userInfoFromLocalStorage}
+};
 
 const middleware = [thunk];
 
